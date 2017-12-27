@@ -1,0 +1,25 @@
+{
+  "name": "servershop",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "~1.17.1",
+    "brcypt": "^1.0.1",
+    "connect-mongo": "^2.0.0",
+    "connect-mongodb": "^1.1.5",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "express-session": "^1.15.6",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.13.7",
+    "mongoosedao": "^1.0.13",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
+  }
+}
