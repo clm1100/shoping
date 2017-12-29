@@ -8,11 +8,14 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session)
 var errHandler = require('./utils/errhandler')
 var mongoose = require('mongoose');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var register = require('./routes/register')
 var product = require('./routes/product')
 var login = require('./routes/login')
+var logout = require('./routes/logout')
+
 var app = express();
 var url = require('./config/mongodbConfig').url;
 
@@ -35,7 +38,7 @@ app.use(session({
   store: new MongoStore({ 
     // mongooseConnection: mongoose.connection,
     url: url,
-    ttl: 1 * 24 * 60 * 60 // = 14 days. Default
+    ttl: 1 * 24 * 60 * 60 // = 1 days. Default
    })
 }))
 
@@ -45,7 +48,7 @@ app.use('/users', users);
 app.use('/register', register);
 app.use('/product', product);
 app.use('/login', login);
-
+app.use('/logout', logout);
 app.use(errHandler.err404);
 app.use(errHandler.errhandler);
 

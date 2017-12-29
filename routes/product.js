@@ -30,7 +30,7 @@ router.post('/tocart',function(req,res){
     var productid = req.body.productid;
     var userid = req.body.userid || req.session.user._id;
     var count = req.body.count || 1;
-
+    console.log(productid,userid,count)
     UserDao.getById(userid,function(err,result){
         if(!err){
             let arr = result.cart;
