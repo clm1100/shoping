@@ -39,4 +39,39 @@ router.post('/', function(req,res,next){
 });
 
 
+
+router.post('/token', function(req,res,next){
+    var username = req.body.username;
+    var password = req.body.password;
+    UserDao.findOne({username:username},function(err,result){
+        if(!err){
+            if(bcrypt.compareSync(password,result.encrypeted_passeord)){
+                result.encrypeted_passeord = null;
+                req.session.user = result;
+                res.json({
+                    code:"200",
+                    info:result
+                })
+            }else{
+                res.json({
+                    code:'404',
+                    msg:"密码不正确",
+                })
+            }
+        }else{
+            res.json({
+                code:'500',
+                msg:'没有用户信息',
+                err:err
+            })
+        }
+    })
+    
+});
+
+
+
+
+
+
 module.exports = router;
