@@ -7,7 +7,7 @@ var bcrypt = require('bcryptjs');
 // var controller = require('../controller/index');
 
 var UserDao = require('../model/userModel').Dao;
-
+var Token = require('../token');
 router.post('/', function(req,res,next){
     var username = req.body.username;
     var password = req.body.password;
@@ -46,11 +46,17 @@ router.post('/token', function(req,res,next){
     UserDao.findOne({username:username},function(err,result){
         if(!err){
             if(bcrypt.compareSync(password,result.encrypeted_passeord)){
-                result.encrypeted_passeord = null;
-                req.session.user = result;
-                res.json({
-                    code:"200",
-                    info:result
+                // result.encrypeted_passeord = null;
+                // req.session.user = result;
+                // res.json({
+                //     code:"200",
+                //     info:result
+                // })
+                Token.setUserToken(result,function(data){
+                    res.json({
+                        code:'200',
+                        token:data
+                    })
                 })
             }else{
                 res.json({
@@ -70,7 +76,14 @@ router.post('/token', function(req,res,next){
 });
 
 
-
+router.post('/token/test',Token.Token,function(req,res){
+    console.log(req.query.bbb)
+    console.log(req.user)
+    res.json({
+        code:'200',
+        data:"ok"
+    })
+})
 
 
 
