@@ -46,12 +46,6 @@ router.post('/token', function(req,res,next){
     UserDao.findOne({username:username},function(err,result){
         if(!err){
             if(bcrypt.compareSync(password,result.encrypeted_passeord)){
-                // result.encrypeted_passeord = null;
-                // req.session.user = result;
-                // res.json({
-                //     code:"200",
-                //     info:result
-                // })
                 result.encrypeted_passeord=null;
                 result.cart = null;
                 result.order=null;
