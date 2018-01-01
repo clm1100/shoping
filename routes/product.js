@@ -63,10 +63,6 @@ router.post('/tocart',function(req,res){
     })
 })
 
-
-
-
-
 router.post('/token/tocart',Token.Token,function(req,res){
     var productid = req.body.productid;
     var userid = req.body.userid || req.user._id;
@@ -103,14 +99,6 @@ router.post('/token/tocart',Token.Token,function(req,res){
 
 
 })
-
-
-
-
-
-
-
-
 
 
 

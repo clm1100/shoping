@@ -52,10 +52,14 @@ router.post('/token', function(req,res,next){
                 //     code:"200",
                 //     info:result
                 // })
+                result.encrypeted_passeord=null;
+                result.cart = null;
+                result.order=null;
                 Token.setUserToken(result,function(data){
                     res.json({
                         code:'200',
-                        token:data
+                        token:data,
+                        user:result
                     })
                 })
             }else{
